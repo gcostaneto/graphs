@@ -1,0 +1,9 @@
+
+# simple facets colour editing
+graphs=   theme(plot.title = element_text(size = 15, family = "Arial", hjust=0.5,
+                                        face = "bold",colour="red3"),
+              text = element_text(size = 12, family = "Arial"),
+              axis.title = element_text(face="bold", colour="red3"),
+              axis.text.x=element_text(size = 11))+
+              theme(strip.text = element_text(face="bold", size=9,lineheight=5.0,colour="white"),
+              strip.background = element_rect(fill="red3", colour="black",size=1))
