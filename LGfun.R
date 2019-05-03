@@ -61,3 +61,20 @@ FW.out = function(y, gid, env, method = "OLS",scale=TRUE, to = c(0.5,2)){
   return(list(acc=cor(fit$y,fit$yhat),adp=out))
 }
 
+
+ge.means = function(k){
+  ge = as.data.frame(ranef(k)[1])
+  ge = data.frame(ge,colsplit(rownames(ge),pattern = ":",c("gid","Env")))
+  names(ge)[1] = "ge"
+  
+  e = as.data.frame(ranef(k)[2])
+  e$Env = rownames(e)
+  names(e)[1] = "e"
+  
+  g = data.frame(emmeans(k,specs = c("gid")))
+  
+  y = merge(g,merge(ge,e,by="Env"),by="gid")
+  y$yield = y$emmean + y$e + y$ge
+  return(y)
+}
+
