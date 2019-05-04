@@ -55,7 +55,7 @@ pheno.rep = function(Gid,Env,value,df){
 
 FW.out = function(y, gid, env, method = "OLS",scale=TRUE, to = c(0.5,2)){
   fit = FW(y=y,VAR = gid,ENV = env,method = method)
-  out = data.frame(g = fit$mu+fit$g, b = fit$b)
+  out = data.frame(g = fit$mu+fit$g, b = fit$b+1)
   if(scale == TRUE){out$b = rescale(out$b,to=to)}
   names(out) = c("g","b")
   return(list(acc=cor(fit$y,fit$yhat),adp=out))
